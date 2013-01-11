@@ -16,7 +16,7 @@ public:
 
 	virtual const Type type() const;
 
-	virtual Array* unpack(std::string* data);
+	static Array* unpack(std::string::iterator& it);
 
 	virtual const std::string pack() const;
 

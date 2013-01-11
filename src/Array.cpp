@@ -11,9 +11,35 @@ const Array::Type Array::type() const
 	return ARRAY;
 }
 
-Array* Array::unpack(std::string* data)
+Array* Array::unpack(std::string::iterator& it)
 {
+	std::cout << "> Object\n";
+	int32 elements;
+	char type = *it++;
+
+	switch(type)
+	{
+		case 'A':
+			elements = string_number<int32>(it, it+4);
+			it += 4;
+		break;
+
+		case 'a':
+			elements = string_number<byte>(it, it+1);
+			it++;
+		break;
+
+		default:
+			std::stringstream ss;
+			ss << "Invalid value of '" << type << "' for type array" << std::endl;
+			throw ubjson_exception(ss.str().c_str());
+	}
+
 	Array* a = new Array();
+	for(int i = 0; i < elements; i++)
+	{
+		a->push_back( Element::unpack(it) );
+	}
 
 	return a;
 }

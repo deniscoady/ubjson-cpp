@@ -26,11 +26,17 @@ Element* Element::unpack(std::string* data)
 Element* Element::unpack(std::string::iterator& it)
 {
 	Element* e = NULL;
+
 	switch(*it)
 	{
 		case 'o':
 		case 'O':
 			e = Object::unpack(it);
+		break;
+
+		case 'a':
+		case 'A':
+			e = Array::unpack(it);
 		break;
 
 		case 'T':
@@ -41,6 +47,7 @@ Element* Element::unpack(std::string::iterator& it)
 		case 's':
 		case 'S':
 			e = String::unpack(it);
+		break;
 
 		case 'B':
 			e = Byte::unpack(it);
@@ -57,6 +64,11 @@ Element* Element::unpack(std::string::iterator& it)
 		case 'L':
 			e = Int64::unpack(it);
 		break;
+
+		default:
+			std::stringstream ss;
+			ss << "Unknown type encountered while unpacking " << std::endl;
+			throw ubjson_exception(ss.str().c_str());
 	}
 
 	return e;
