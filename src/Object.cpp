@@ -12,7 +12,6 @@ const Object::Type Object::type() const
 
 Object* Object::unpack(std::string::iterator& it)
 {
-	std::cout << "> Object\n";
 	int32 elements;
 	char type = *it++;
 
@@ -42,7 +41,7 @@ Object* Object::unpack(std::string::iterator& it)
 
 		(*o)[key->value()] = value;
 	}
-
+	
 	return o;
 }
 

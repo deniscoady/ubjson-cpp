@@ -13,7 +13,6 @@ const Array::Type Array::type() const
 
 Array* Array::unpack(std::string::iterator& it)
 {
-	std::cout << "> Object\n";
 	int32 elements;
 	char type = *it++;
 

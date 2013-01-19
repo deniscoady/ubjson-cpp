@@ -25,7 +25,6 @@ const std::string Boolean::pack() const
 
 Boolean* Boolean::unpack(std::string::iterator& it)
 {
-	std::cout << "> Boolean\n";
 	char type = *it++;
 	bool value;
 

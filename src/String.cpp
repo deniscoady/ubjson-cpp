@@ -39,7 +39,6 @@ const std::string String::pack() const
 
 String* String::unpack(std::string::iterator& it)
 {
-	std::cout << "> String\n";
 	char type = *it++;
 	int32 length;
 
@@ -60,7 +59,6 @@ String* String::unpack(std::string::iterator& it)
 			ss << "Invalid value of '" << type << "' for type string" << std::endl;
 			throw ubjson_exception(ss.str().c_str());
 	}
-	std::cout << std::string(it, it + length) << std::endl;
 	String* str = new String(std::string(it, it + length ));
 	it += length;
 	return str;
